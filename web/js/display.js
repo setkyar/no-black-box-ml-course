@@ -9,7 +9,7 @@ function createRow(container, studentName, samples) {
     row.appendChild(rowLabel);
 
     for(let sample of samples) {
-        const {id, label} = sample;
+        const { id, label, student_id } = sample;
 
         const sampleContainer = document.createElement("div");
         sampleContainer.id = "sample_" + id;
@@ -22,6 +22,9 @@ function createRow(container, studentName, samples) {
         const img = document.createElement('img');
         img.src = constants.IMG_DIR + "/" + id + ".png";
         img.classList.add("thumb");
+        if (utils.flaggedUsers.includes(student_id)) {
+            img.classList.add("blur");
+        }
         sampleContainer.appendChild(img);
 
         row.appendChild(sampleContainer);
